@@ -1,0 +1,10 @@
+RewriteEngine On
+
+# Définir la variable d'environnement BASE
+RewriteCond %{ENV:BASE} ^$
+RewriteRule ^ - [E=BASE:/TodoListMVC/]
+
+# Rediriger toutes les requêtes vers le fichier index.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ %{ENV:BASE}index.php%{REQUEST_URI} [L]
